@@ -2,7 +2,7 @@
 
 ![Basic role syntax check](https://github.com/nemonik/k3s-agent-role/workflows/Basic%20role%20syntax%20check/badge.svg)
 
-An Ansible role for ensuring the configuration of a [K3s](https://k3s.io/) worker node.
+An Ansible role for ensuring the configuration of an Agent [K3s](https://k3s.io/) worker node.
 
 ## Requirements
 
