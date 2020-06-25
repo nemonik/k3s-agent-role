@@ -151,13 +151,13 @@
 
   - name: is install_k3s.sh cached?
     stat:
-      path: "{{ cache_path }}/install_k3s.sh"
+      path: "{{ cache_path }}/files/install_k3s.sh"
     register: k3s_distributable
 
   - name: cache install_k3.sh retrieved from https://get.k3s.io
     get_url:
       url: https://get.k3s.io
-      dest: "{{ cache_path }}/install_k3s.sh"
+      dest: "{{ cache_path }}/files/install_k3s.sh"
     retries: "{{ default_retries }}"
     delay: "{{ default_delay }}"
     register: result
@@ -166,7 +166,7 @@
 
   - name: emplace install_k3s.sh into /home/{{ ansible_user_id }}
     copy:
-      src: "{{ cache_path }}/install_k3s.sh"
+      src: "{{ cache_path }}/files/install_k3s.sh"
       dest: /home/{{ ansible_user_id }}/k3s
       mode: u=rwx,g=r,o=r
       remote_src: yes
@@ -241,4 +241,3 @@
       insertafter: EOF
   tags:
     - k3s-agent
-
