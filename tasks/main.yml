@@ -113,7 +113,7 @@
   tags:
     - k3s-agent
 
-- name: determine k3s_flannel_iface of master
+- name: determine k3s_flannel_iface of agent
   block:
   - name: set interface, if Alpine
     set_fact:
@@ -244,10 +244,10 @@
   tags:
     - k3s-agent
 
-- name: ensure {{ ansible_user_id }} can access Kubernetes
+- name: ensure {{ ansible_user_id }} can access Kubernetes, when retrieve_kubeconfig is true
   block:
   - name: ensure the {{ ansible_user_id }} user has an kubeconfig.yml file to access kubernetes
-    shell: scp -qp -oStrictHostKeyChecking=no -i /home/{{ ansible_user_id }}/.ssh/id_rsa {{ ansible_user_id }}@master:/home/{{ ansible_user_id }}/kubeconfig.yml /home/{{ ansible_user_id }}/kubeconfig.yml
+    shell: scp -qp -oStrictHostKeyChecking=no -i /home/{{ ansible_user_id }}/.ssh/id_rsa {{ ansible_user_id }}@{{ k3s_server_hostname }}:/home/{{ ansible_user_id }}/kubeconfig.yml /home/{{ ansible_user_id }}/kubeconfig.yml
 
   - name: chown and fix permissions on /home/{{ ansible_user_id }}/kubeconfig.yml 
     file:
@@ -273,5 +273,7 @@
       dest:  /home/{{ ansible_user_id }}/.bash_profile
       line: 'export KUBECONFIG="/home/{{ ansible_user_id }}/kubeconfig.yml"'
       insertafter: EOF
+  when:
+    - retrieve_kubeconfig
   tags:
     - k3s-agent
