@@ -92,7 +92,6 @@
       - container-selinux
       - selinux-policy-base
       - https://rpm.rancher.io/k3s-selinux-0.1.1-rc1.el7.noarch.rpm
-
   when:
     - ansible_distribution == 'CentOS'
     - ansible_distribution_major_version == '7'
@@ -154,12 +153,7 @@
     file:
       path: "{{ cache_path }}/files"
       state: directory
-
-  - name: ensure /home/{{ ansible_user_id }}/k3s exists
-    file:
-      path: /home/{{ ansible_user_id }}/k3s
-      state: directory
-
+    
   - name: is install_k3s.sh cached?
     stat:
       path: "{{ cache_path }}/files/install_k3s.sh"
@@ -246,6 +240,11 @@
 
 - name: ensure {{ ansible_user_id }} can access Kubernetes, when retrieve_kubeconfig is true
   block:
+  - name: ensure /home/{{ ansible_user_id }}/k3s exists
+    file:
+      path: /home/{{ ansible_user_id }}/k3s
+      state: directory
+
   - name: ensure the {{ ansible_user_id }} user has an kubeconfig.yml file to access kubernetes
     shell: scp -qp -oStrictHostKeyChecking=no -i /home/{{ ansible_user_id }}/.ssh/id_rsa {{ ansible_user_id }}@{{ k3s_server_hostname }}:/home/{{ ansible_user_id }}/kubeconfig.yml /home/{{ ansible_user_id }}/kubeconfig.yml
 
