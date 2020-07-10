@@ -3,4 +3,4 @@
 default_retries: 60
 default_delay: 10
 k3s_version: v1.18.4+k3s1
-
+k3s_server_hostname: 192.168.0.10
