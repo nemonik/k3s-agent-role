@@ -160,7 +160,7 @@
       path: "{{ cache_path }}/files/install_k3s.sh"
     register: k3s_distributable
 
-  - name: cache install_k3.sh retrieved from https://get.k3s.io
+  - name: cache install_k3.sh retrieved from https://raw.githubusercontent.com/rancher/k3s/master/install.sh
     shell: |
       if [[ "windows" == "{{ host_os | default('') }}" && "{{ cache_path }}" != "/tmp" ]]; then
          sudo su
