@@ -149,6 +149,11 @@
     loop: "{{ images }}"
     when:
       images_cache_path is defined
+ 
+  - name: create {{ cache_path }}/files, if it doesn't exist
+    file:
+      path: "{{ cache_path }}/files"
+      state: directory
 
   - name: ensure /home/{{ ansible_user_id }}/k3s exists
     file:
