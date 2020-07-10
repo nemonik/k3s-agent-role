@@ -19,6 +19,7 @@ The role installs on CentOS 7, Alpine 3.10 and Ubuntu Bionic.
 | k3s_version              | yes      | v1.18.4+k3s1          | matches release tag | k3s version to install                           |
 | k3s_server_hostname      | yes      | 192.168.0.10          | String              | The address of the server                        |
 | vault_k3s_cluster_secret | yes      |                       | String              | Please, set via Ansible vault                    |
+| retrieve_kubeconfig      | no.      | false                 | Boolean             | Retreive the kubeconfig file                     |
 | images_cache_path        | no       | not defined           | Path                | Path to folder used to cache saved Docker images |            
 | cache_container_timeout  | no       | 300 seconds           | Integer value       | Number of seconds before Ansible times out       |
 
