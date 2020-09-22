@@ -217,12 +217,12 @@
     register: result
     until: result is succeeded
    
-  - name: alias `kubectl` to `k3s kubectl`
-    become: yes
-    copy:
-      dest: /etc/profile.d/alias_kubectl.sh
-      content: |
-        alias kubectl="k3s kubectl"
+#  - name: alias `kubectl` to `k3s kubectl`
+#    become: yes
+#    copy:
+#      dest: /etc/profile.d/alias_kubectl.sh
+#      content: |
+#        alias kubectl="k3s kubectl"
 
   - name: save {{ images }} to cache
     include_tasks: cache_container_image.yml
