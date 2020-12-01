@@ -16,7 +16,7 @@ The role installs on CentOS 7, Alpine 3.10 and Ubuntu Bionic.
 |--------------------------|----------|-----------------------|---------------------|--------------------------------------------------|
 | default_retries          | yes      | 60                    | Integer value       | default number of retries                        |
 | default_delay            | yes      | 60                    | Integer value       | default delay in seconds between retries         |
-| k3s_version              | yes      | v1.18.4+k3s1          | matches release tag | k3s version to install                           |
+| k3s_version              | yes      | v1.19.4+k3s1          | matches release tag | k3s version to install                           |
 | k3s_server_hostname      | yes      | 192.168.0.10          | String              | The address of the server                        |
 | vault_k3s_cluster_secret | yes      |                       | String              | Please, set via Ansible vault                    |
 | retrieve_kubeconfig      | no.      | false                 | Boolean             | Retreive the kubeconfig file                     |
