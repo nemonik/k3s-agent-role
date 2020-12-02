@@ -275,3 +275,10 @@
     - retrieve_kubeconfig
   tags:
     - k3s-agent
+    
+- name: label node as a worker
+  shell: kubectl label node `hostname` node-role.kubernetes.io/worker=worker
+  when:
+    - retrieve_kubeconfig
+  tags:
+    - k3s-agent
