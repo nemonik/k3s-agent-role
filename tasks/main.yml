@@ -29,10 +29,12 @@
         name: firewalld
         enabled: no
         state: stopped
+      ignore_errors: yes
 
     - name: ensure firewalld is masked
       become: yes
       shell: systemctl mask firewalld
+      ignore_errors: yes
 
     - name: ensure iptables-services is installed
       become: yes
