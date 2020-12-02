@@ -210,7 +210,7 @@
 
   - name: install K3s as an agent
     become: yes
-    shell: INSTALL_K3S_VERSION={{ k3s_version }} K3S_URL=https://{{ k3s_server_hostname }}:6443 K3S_CLUSTER_SECRET={{ vault_k3s_cluster_secret }} INSTALL_K3S_EXEC="--flannel-backend=host-gw --flannel-iface={{ k3s_flannel_iface }} --node-label=node-role.kubernetes.io/worker=worker --docker" /home/{{ ansible_user_id }}/k3s/install_k3s.sh agent
+    shell: INSTALL_K3S_VERSION={{ k3s_version }} K3S_URL=https://{{ k3s_server_hostname }}:6443 K3S_CLUSTER_SECRET={{ vault_k3s_cluster_secret }} INSTALL_K3S_EXEC="--flannel-backend=host-gw --flannel-iface={{ k3s_flannel_iface }} --node-label='node-role.kubernetes.io/worker=worker' --docker" /home/{{ ansible_user_id }}/k3s/install_k3s.sh agent
     retries: "{{ default_retries }}
     delay: "{{ default_delay }}"
     register: result
